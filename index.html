@@ -33,11 +33,12 @@
 	    function validateForm() {
 			var inputUser = document.loginform.inputUser.value;
 			var inputPassword = document.loginform.inputPassword.value;
-		    	var location ='krztnkho.github.io/smartstart/views/engr-dashboard.html';
+		    	var url = 'https://smart-start-1130.nanoscaleapi.io/users',
+			var location ='krztnkho.github.io/smartstart/views/engr-dashboard.html';
 
-			$.ajax({
+			$.ajax(url,{
 				    type: "POST",
-				    url: "https://smart-start-1130.nanoscaleapi.io/users",
+				    
 				    dataType: 'json',
 				    data: {'username': inputUser , 'password' :  inputPassword },
 				    success:function(data) {
@@ -45,7 +46,7 @@
 				    	form += '<input type="hidden" name="'+id+'" value="'+data._id+'">';	
 				    	$('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
 					},
-				   fail: function(){
+				   error: function(){
 						alert('Login was unsuccessful, please check your username and password')
 					}
 				});
