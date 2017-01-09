@@ -36,10 +36,11 @@
 		    	var url = 'https://smart-start-1130.nanoscaleapi.io/users';
 			var location ='krztnkho.github.io/smartstart/views/engr-dashboard.html';
 
-			$.ajax('url',{
-				    type: "POST",
+			$.ajax( url ,{
 				    crossDomain: true,
-				    url : url,
+				    type: "POST",
+				    
+				    
 				    dataType: 'json',
 				    data: {'username': inputUser , 'password' : inputPassword },
 				    success:function(data) {
