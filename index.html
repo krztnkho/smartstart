@@ -41,7 +41,7 @@
 				    crossDomain: true,
 				    url : url,
 				    dataType: 'json',
-				    data: "{'username':'"+ inputUser +"' , 'password' :  '"+inputPassword +'}",
+				    data: "{'username':'"+ inputUser +"' , 'password' :  '"+inputPassword +"'}",
 				    success:function(data) {
 				    	console.log(data); 
 				    	form += '<input type="hidden" name="'+id+'" value="'+data._id+'">';	
