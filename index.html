@@ -39,12 +39,12 @@
 				    type: "POST",
 				    url: "https://smart-start-1130.nanoscaleapi.io/users",
 				    dataType: 'json'
-				    data: '{"username": "' + inputUser + '", "password" : "' + inputPassword + '"}',
+				    data: {'username': inputUser , 'password' :  inputPassword },
 				    success:function(data) {
 				    	console.log(data); 
 				    	form += '<input type="hidden" name="'+id+'" value="'+data._id+'">';	
 				    	$('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
-					}
+					},
 				   fail: function(){
 						alert('Login was unsuccessful, please check your username and password')
 					}
