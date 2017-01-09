@@ -15,9 +15,9 @@
 <body>
 	 <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" onSubmit="return validateForm();" action="index.html" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputUser" class="sr-only">UsernameMart</label>
+        <label for="inputUser" class="sr-only">Username</label>
         <input type="user" id="inputUser" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -29,8 +29,33 @@
 
 
 
+	<script>
+	    function validateForm() {
+			var inputUser = document.loginform.inputUser.value;
+			var inputPassword = document.loginform.inputPassword.value;
+		    	var location ='krztnkho.github.io/smartstart/views/engr-dashboard.html';
+
+			$.ajax({
+				    type: "POST",
+				    url: "https://smart-start-1130.nanoscaleapi.io/users",
+				    dataType: 'json'
+				    data: '{"username": "' + inputUser + '", "password" : "' + inputPassword + '"}',
+				    success:function(data) {
+				    	console.log(data); 
+				    	form += '<input type="hidden" name="'+id+'" value="'+data._id+'">';	
+				    	$('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+					}
+				   fail: function(){
+						alert('Login was unsuccessful, please check your username and password')
+					}
+				});
+				
+				
+		  }
+	</script>
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
