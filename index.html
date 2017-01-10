@@ -15,7 +15,7 @@
 <body>
 	 <div class="container">
 
-      <form class="form-signin" onSubmit="return validateForm();" action="index.html" method="post">
+      <form class="form-signin" id="login-form" onSubmit="return validateForm();" action="index.html" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUser" class="sr-only">Username</label>
         <input type="user" id="inputUser" class="form-control" placeholder="Username" required autofocus>
@@ -31,9 +31,7 @@
 
 	<script>
 	    function validateForm() {
-			var inputUser = document.getElementById(inputUser);
-			var inputPassword = document.getElementById(inputPassword);
-		    	var url = 'https://smart-start-1130.nanoscaleapi.io/users';
+			var url = 'https://smart-start-1130.nanoscaleapi.io/users';
 			var location ='krztnkho.github.io/smartstart/views/engr-dashboard.html';
 
 			$.ajax( {
@@ -42,11 +40,11 @@
 				    url : url,
 				    
 				    dataType: 'json',
-				    data: {'username': inputUser , 'password' : inputPassword },
+				    data: $("#login-form").serialize(),
 				    success:function(data) {
 				    	console.log(data); 
 				    	form += '<input type="hidden" name="'+id+'" value="'+data._id+'">';	
-				    	$('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+				    	$('<form id="engr-form" action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
 					},
 				   error: function(){
 						alert('Login was unsuccessful, please check your username and password')
